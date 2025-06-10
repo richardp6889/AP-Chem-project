@@ -14,7 +14,7 @@
             }
             img{
                 height: 200px;
-                width: 200px;
+                width: 225px;
             }
 
         </style>
@@ -26,22 +26,143 @@
         <div class="container">
             <div class="row">
                 <div class="column">
-                    <img src="images/graph.png" >
-                    <img src="images/K.png" >
-                    <img src="images/Q.png" >
-                    <img src="images/le.png" >
+                    <img id="a1" src="images/whitespace.png" >
+                    <img id="a2" src="images/whitespace.png" >
+                    <img id="a3" src="images/whitespace.png" >
+                    <img id="a4" src="images/whitespace.png" >
                 </div>
             </div>
+            <div class="row">
+                <div class="column">
+                    <img id="a5" src="images/whitespace.png" >
+                    <img id="a6" src="images/whitespace.png" >
+                    <img id="a7" src="images/whitespace.png" >
+                    <img id="a8" src="images/whitespace.png" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="cloumn">
+                    <img id="a9" src="images/whitespace.png" >
+                    <img id="a10" src="images/whitespace.png">
+                    <img id="a11" src="images/whitespace.png">
+                    <img id="a12" src="images/whitespace.png">
+                </div>
+            </div>
+            <h1> </h1>
         </div>
 
         <!-- JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="script.js"></script>
         <script>
+            function generateRandomArray(length) {
+                if (length <= 0) {
+                    return [];
+                }
+                const array = [];
+                for (let i = 1; i <= length; i++) {
+                    array.push(i);
+                }
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+                }
 
+            const randomArray = generateRandomArray(12)
+            var board = prompt("Pick either A or B").toLowerCase()
+            var options;
+            let ab1, ab2, ab3, ab4, ab5, ab6, ab7, ab8, ab9, ab10, ab11, ab12;
+            let guess = 0;
+
+            if(board == "a"){
+                  ab1 = "images/graph.png"
+                  ab2 = "images/K.png"
+                  ab3 = "images/Q.png"
+                  ab4 = "images/le.png"
+                  ab5 = "images/anode.png"
+                  ab6 = "images/cathode.png"
+                  ab7 = "images/saltbridge.png"
+                  ab8 = "images/wire.png"
+                  ab9 = "images/radii.jpeg"
+                  ab10 = "images/radiitrend.png"
+                  ab11 = "images/mm.png"
+                  ab12 = "images/massspectra.png"
+             }else{
+                  ab1 = "images/pinkliquid.jpg"
+                  ab2 = "images/hydrion.png"
+                  ab3 = "images/peroxide.png"
+                  ab4 = "images/buret.png"
+                  ab5 = "images/gasc.png"
+                  ab6 = "images/Boyle.png"
+                  ab7 = "images/parpre.png"
+                  ab8 = "images/ideal.png"
+                  ab9 = "images/dispersion.jpg"
+                  ab10 = "images/ditodi.jpg"
+                  ab11 = "images/inter.png"
+                  ab12 = "images/iondipole.png"
+             }
+
+             function setup(){
+                    document.querySelector('#a1').src = ab1;
+                    document.querySelector('#a2').src = ab12;
+                    document.querySelector('#a3').src = ab5;
+                    document.querySelector('#a4').src = ab2;
+                    document.querySelector('#a5').src = ab6;
+                    document.querySelector('#a6').src = ab9;
+                    document.querySelector('#a7').src = ab3;
+                    document.querySelector('#a8').src = ab11;
+                    document.querySelector('#a9').src = ab10;
+                    document.querySelector('#a10').src = ab7;
+                    document.querySelector('#a11').src = ab4;
+                    document.querySelector('#a12').src = ab8;
+
+            }
+             setup();
+
+
+
+             document.addEventListener("keypress",function(event){
+                if(event.key == " "){
+                    options = prompt("What 4 letters will you pick?(eg.1,2,3,4)");
+                    if(options.includes(2) && options.includes(6) && options.includes(8) && options.includes(9)){
+                        alert("correct");
+                        guess++;
+                        ab12 = "images/whitespace.png"
+                        ab9 = "images/whitespace.png"
+                        ab11 = "images/whitespace.png"
+                        ab10 = "images/whitespace.png"
+                        setup();
+                    }else if(options.includes(1) && options.includes(4) && options.includes(7) && options.includes(11)){
+                        alert("correct");
+                        guess++;
+                        ab1 = "images/whitespace.png"
+                        ab2 = "images/whitespace.png"
+                        ab3 = "images/whitespace.png"
+                        ab4 = "images/whitespace.png"
+                        setup();
+                    }else if(options.includes(3) && options.includes(5) && options.includes(10) && options.includes(12)){
+                        alert("correct");
+                        guess++;
+                        ab5 = "images/whitespace.png"
+                        ab6 = "images/whitespace.png"
+                        ab7 = "images/whitespace.png"
+                        ab8 = "images/whitespace.png"
+                        setup();
+                    }else{
+                        alert("incorrect. Try")
+                    }
+               }
+               if(guess == 3){
+                        document.querySelector(".title").innerHTML = "You've won!!"
+                    }
+
+             })
 
 
 
         </script>
     </body>
 </html>
+
